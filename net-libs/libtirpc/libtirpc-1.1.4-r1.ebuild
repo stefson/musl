@@ -22,7 +22,7 @@ DEPEND="${RDEPEND}
 	>=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-1.0.3-musl_types.patch"
+	"${FILESDIR}/${PN}-musl_types.patch"
 )
 
 src_prepare() {
