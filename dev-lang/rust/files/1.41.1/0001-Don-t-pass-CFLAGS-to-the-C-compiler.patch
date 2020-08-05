@@ -1,0 +1,26 @@
+From 5ef2ce2d696203aa4643b5b748ef53c9c08fa7bd Mon Sep 17 00:00:00 2001
+From: Samuel Holland <samuel@sholland.org>
+Date: Wed, 10 Jan 2018 13:36:41 -0600
+Subject: [PATCH 01/15] Don't pass CFLAGS to the C++ compiler
+
+---
+ src/bootstrap/builder.rs | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src/bootstrap/builder.rs b/src/bootstrap/builder.rs
+index 8b0ad169cfc..6eafd1b076a 100644
+--- a/src/bootstrap/builder.rs
++++ b/src/bootstrap/builder.rs
+@@ -1128,8 +1128,7 @@ impl<'a> Builder<'a> {
+             if let Ok(cxx) = self.cxx(target) {
+                 let cxx = ccacheify(&cxx);
+                 cargo
+-                    .env(format!("CXX_{}", target), &cxx)
+-                    .env(format!("CXXFLAGS_{}", target), cflags);
++                    .env(format!("CXX_{}", target), &cxx);
+             }
+         }
+ 
+-- 
+2.24.1
+
