@@ -38,7 +38,7 @@ LLVM_TARGET_USEDEPS=${ALL_LLVM_TARGETS[@]/%/?}
 
 LICENSE="|| ( MIT Apache-2.0 ) BSD-1 BSD-2 BSD-4 UoI-NCSA"
 
-IUSE="clippy cpu_flags_arm_neon cpu_flags_arm_thumb2 cpu_flags_x86_sse2 debug doc libressl miri nightly parallel-compiler rls rustfmt system-bootstrap system-llvm wasm ${ALL_LLVM_TARGETS[*]}"
+IUSE="clippy cpu_flags_arm_neon cpu_flags_x86_sse2 debug doc libressl miri nightly parallel-compiler rls rustfmt system-bootstrap system-llvm wasm ${ALL_LLVM_TARGETS[*]}"
 
 # Please keep the LLVM dependency block separate. Since LLVM is slotted,
 # we need to *really* make sure we're not pulling more than one slot
@@ -194,7 +194,7 @@ src_configure() {
 		rust_targets="${rust_targets},\"${rust_target}\""
 
 		if [ "$rust_target" = "armv7-unknown-linux-musleabihf" ] &&
-		   use cpu_flags_arm_neon && use cpu_flags_arm_thumb2; then
+		   use cpu_flags_arm_neon; then
 			rust_targets="${rust_targets},\"thumbv7neon-unknown-linux-musleabihf\""
 		fi
 	done
@@ -303,7 +303,7 @@ src_configure() {
 		EOF
 
 		if [ "$rust_target" = "armv7-unknown-linux-musleabihf" ] &&
-		   use cpu_flags_arm_neon && use cpu_flags_arm_thumb2; then
+		   use cpu_flags_arm_neon; then
 			rust_target=thumbv7neon-unknown-linux-musleabihf
 
 			export "CFLAGS_${rust_target//-/_}"="$CFLAGS ${arch_cflags}"
