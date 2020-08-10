@@ -193,10 +193,6 @@ src_configure() {
 		rust_target=$(rust_abi $(get_abi_CHOST ${v##*.}) | sed s/gnu/musl/)
 		rust_targets="${rust_targets},\"${rust_target}\""
 
-		if [ "$rust_target" = "armv7-unknown-linux-musleabihf" ] &&
-		   use cpu_flags_arm_neon; then
-			rust_targets="${rust_targets},\"thumbv7neon-unknown-linux-musleabihf\""
-		fi
 	done
 	if use wasm; then
 		rust_targets="${rust_targets},\"wasm32-unknown-unknown\""
