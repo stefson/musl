@@ -50,7 +50,6 @@ IUSE="clippy cpu_flags_arm_neon cpu_flags_arm_thumb2 cpu_flags_x86_sse2 debug do
 # 3. Specify LLVM_MAX_SLOT, e.g. 10.
 LLVM_DEPEND="
 	|| (
-		sys-devel/llvm:9[${LLVM_TARGET_USEDEPS// /,}]
 		sys-devel/llvm:10[${LLVM_TARGET_USEDEPS// /,}]
 	)
 	<sys-devel/llvm-11:=
