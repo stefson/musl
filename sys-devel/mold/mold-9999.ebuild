@@ -25,7 +25,6 @@ RESTRICT="test"
 RDEPEND=">=dev-cpp/tbb-2021.4.0:=
 	sys-libs/zlib
 	!kernel_Darwin? (
-		>=dev-libs/mimalloc-2:=
 		dev-libs/openssl:=
 	)"
 # As of 1.1, xxhash is now a header-only dep, but it's now bundled :(
@@ -57,7 +56,7 @@ src_compile() {
 		CFLAGS="${CFLAGS}" \
 		CXXFLAGS="${CXXFLAGS}" \
 		SYSTEM_TBB=1 \
-		SYSTEM_MIMALLOC=1 \
+		USE_MIMALLOC=0 \
 		STRIP="true" \
 		LIBDIR="${EPREFIX}/usr/$(get_libdir)"
 }
@@ -65,14 +64,14 @@ src_compile() {
 src_test() {
 	emake \
 		SYSTEM_TBB=1 \
-		SYSTEM_MIMALLOC=1 \
+		USE_MIMALLOC=0 \
 		check
 }
 
 src_install() {
 	emake \
 		SYSTEM_TBB=1 \
-		SYSTEM_MIMALLOC=1 \
+		USE_MIMALLOC=0 \
 		DESTDIR="${D}" \
 		PREFIX="${EPREFIX}/usr" \
 		LIBDIR="${EPREFIX}/usr/$(get_libdir)" \
